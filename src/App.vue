@@ -14,9 +14,12 @@
     <div class="container">
       <h1 class="display-4 mb-4">Fetching API Data</h1>
       <div class="d-flex">
-        <button class="btn btn-primary mr-4" @click="getText()" id="getText">Get Text</button>
+        <!-- <button class="btn btn-primary mr-4" @click="getText()" id="getText">Get Text</button> -->
         <!-- <button class="btn btn-success mr-4" @click="getUsers()" id="getUsers">Get JSON</button>
         <button class="btn btn-warning mr-4" @click="getPosts()" id="getPosts">Get API DATA</button>-->
+        <div v-for="post in posts" :key="post.id">
+          <h3>{{ post.title }}</h3>
+        </div>
       </div>
       <hr>
       <div id="output"></div>
@@ -96,8 +99,46 @@ import ToDoItem from "./components/ToDoItem.vue";
 //   .then((res) => res.json())
 //   .then((data) => console.log(data))
 // }
-
+import axios from "axios";
 export default {
+  data() {
+    return {
+      id: "",
+      title: ""
+    };
+  },
+  mounted() {
+    axios({
+      method: "GET",
+      url: "https://jsonplaceholder.typicode.com/posts"
+    }).then(
+      result => {
+        //  posts = result.data
+        console.log("result:", result.data[11]);
+        document.getElementById("output").innerHTML = result.data[11].body;
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
+  // methods: {
+  //   sendData() {
+  //     axios({
+  //       method: "POST",
+  //       url: "https://jsonplaceholder.typicode.com/posts",
+  //       data: this.input,
+  //       headers: { "content-type": "application/json" }
+  //     }).then(
+  //       result => {
+  //         this.response = result.data;
+  //       },
+  //       error => {
+  //         console.error(error);
+  //       }
+  //     );
+  //   }
+  // }
   //   name: "to-do",
   //   components: {
   //     ToDoItem
@@ -119,52 +160,38 @@ export default {
   //     };
   //   },
 
-  methods: {
-    createNewToDoItem() {
-      // validate todo
-      if (!this.todo) {
-        alert("Please enter a todo!");
-        return;
-      }
+  // methods: {
+  //   createNewToDoItem() {
+  //     if (!this.todo) {
+  //       alert("Please enter a todo!");
+  //       return;
+  //     }
 
-      const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;
-      this.list.push({ id: newId, text: this.todo });
-      this.todo = "";
-    },
-    onDeleteItem(todo) {
-      this.list = this.list.filter(item => item !== todo);
-    },
-    getText() {
-      alert("Connected...");
-    //   const city = "GHAZIABAD";
-    // const country = "India";
-      // fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`)
-      fetch('./sample.txt')
-        .then(res => {
-          console.log("res1111>>>>", res)
-          res.text()
-          console.log("res2222>>>>", res.text())
-        }).catch(err => console.log(err))
-        .then(data => {
-          console.log("data>>>", data.text)
-          document.getElementById("output").innerHTML = data;
-        })
-        .catch(err => console.log(err));
-        
-    // fetch("http://localhost:8086", {
-    //     method: "GET",
-    //     headers: {
-    //         "Content-Type": "text/plain"
-    //     }
-    //     body: JSON.stringify(res)
-    // }).then(function(res) {
-    //     return res.json();
-    // }).then(function(muutuja){
-    //     document.getElementById('väljund').innerHTML = JSON.stringify(muutuja);
-    // });
+  //     const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;
+  //     this.list.push({ id: newId, text: this.todo });
+  //     this.todo = "";
+  //   },
+  //   onDeleteItem(todo) {
+  //     this.list = this.list.filter(item => item !== todo);
+  //   },
 
-    }
-  }
+  //   getText() {
+  //     alert("Connected...");
+  //     this.$http.get(`http://api.openweathermap.org/data/2.5/forecast?id=1271308&appid=${API_KEY}`)
+  //       .then(res => {
+  //         console.log("res1111>>>>", res);
+  //         console.log(res.headers.get("Content-Type"));
+  //         console.log(res.headers.get("Date"));
+  //         res.text();
+  //         console.log("res2222>>>>", res.text());
+  //       })
+  //       .then(data => {
+  //         console.log("data>>>", data);
+  //         document.getElementById("output").innerHTML = data;
+  //       })
+  //       .catch(err => console.log(err));
+  //   }
+  // }
 };
 </script>
 

@@ -107,27 +107,25 @@ export default {
     };
   },
   mounted() {
-fetch(this.$data.jsonLink)
-        .then(function(res) {
+// fetch(this.$data.jsonLink)
+//         .then(function(res) {
           
-          res = res.json()
-          console.log("response>>>", res)
-          return res.json();
-        }).then((resData) => {
-          console.log("data>>>", resData)
-        })
-    // axios({
-    //   method: "GET",
-    //   url: "https://jsonplaceholder.typicode.com/posts"
-    // }).then(
-    //   result => {
-    //     console.log("result:", result.data[0]);
-    //     document.getElementById("output").innerHTML = result.data[0].body;
-    //   },
-    //   error => {
-    //     console.error(error);
-    //   }
-    // );
+//           res = res.json()
+//           console.log("response>>>", res)
+//           return res.json();
+//         }).then((resData) => {
+//           console.log("data>>>", resData)
+//         })
+    axios({
+      method: "GET",
+      url: "http://localhost:3000/posts/1"
+    }).then(
+      result => {
+        console.log("result:", result.request.response.result.id);
+        // document.getElementById("output").innerHTML = result.data[0].body;
+      }).then((data) => {
+        console.log("data:>>>>", data);
+      })
   }
   // methods: {
   //   sendData() {

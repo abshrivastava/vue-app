@@ -38,7 +38,7 @@
     .ToDoItem-Delete {
         width: 20px;
         padding: 5px;
-        height: 20px;
+        /* height: 20px; */
         cursor: pointer;
         background: #ff7373;
         border-radius: 10px;

@@ -31,11 +31,19 @@ export default {
           list: [
               {
                 id: 1,
-                text: 'clean the house'
+                text: 'Data List1'
               },
               {
                 id: 2,
-                text: 'buy milk'
+                text: 'Data List2'
+              }, 
+              {
+                id: 3,
+                text: 'Data List3'
+              },
+              {
+                id: 4,
+                text: 'Data List4'
               }
           ],
           todo: '',

@@ -1,17 +1,23 @@
 <template>
   <div id="app">
     <div class="ToDo">
-      <img class="Logo" :src="logo" alt="Vue logo"/>
-      <h1 class="ToDo-Header">Vue To Do</h1>
-      <div class="ToDo-Container">
-        <div class="ToDo-Content">
-          <ToDoItem v-for="todo in list" 
-                    :todo="todo" 
-                    @delete="onDeleteItem"
-                    :key="todo.id" />
+      <div class="inner">
+        <div>
+          <h1 class="ToDo-Header">Demo</h1>
+          <div class="ToDo-Container">
+            <div class="ToDo-Add">
+              <div><input type="text" v-model="todo" v-on:keyup.enter="createNewToDoItem"/></div>
+              <button @click="createNewToDoItem()">Add</button>
+            </div>
+            <div class="ToDo-Content">
+              <ToDoItem v-for="todo in list" 
+                        :todo="todo" 
+                        @delete="onDeleteItem"
+                        :key="todo.id" />
+            </div>
+            
+          </div>
         </div>
-        <input type="text" v-model="todo" v-on:keyup.enter="createNewToDoItem"/>
-        <div class="ToDo-Add" @click="createNewToDoItem()">+</div>
       </div>
     </div>
   </div>
@@ -31,19 +37,11 @@ export default {
           list: [
               {
                 id: 1,
-                text: 'Data List1'
+                text: 'Add detail 1'
               },
               {
                 id: 2,
-                text: 'Data List2'
-              }, 
-              {
-                id: 3,
-                text: 'Data List3'
-              },
-              {
-                id: 4,
-                text: 'Data List4'
+                text: 'Add detail 2'
               }
           ],
           todo: '',
@@ -74,16 +72,15 @@ export default {
 <style>
 
   body {
-    margin: 0;
+    margin: 0; 
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
-    background: linear-gradient(#aeffae, #3d99ff);
     height: auto;
-    min-height: 100vh;
-    display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 15px;
   }
+  h1, p{ margin: 0; padding: 0;}
 
   .Logo {
     width: 50px;
@@ -92,56 +89,58 @@ export default {
   }
 
   .ToDo {
-    text-align: center;
     border: 1px solid white;
-    width: 80vw;
-    height: auto;
-    box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.5);
-    background: #f6f6f6;
-    padding-bottom: 60px;
-    margin: 40px auto;
+    width: 100%;
+    max-width: 700px;
+    height: 100vh;
+    display:table;
+    margin:0 auto;
   }
+  .ToDo .inner{ display: table-cell; width: 100%; height: 100%; vertical-align: middle;}
 
   .ToDo-Header {
     color: black;
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
     font-weight: 400;
-    text-transform: uppercase;
-    margin: 70px auto 30px;
+    background-color: #de4843;
+    color: #fff;
+    font-size:22px;
+    padding: 12px 10px;
+    text-align: center;
   }
-
-  .ToDo-Add {
-    color: white;
-    font-size: 2em;
-    width: 0.5em;
-    height: 0.5em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    cursor: pointer;
-    background: #73ff73;
-    border-radius: 10px;
-    box-shadow: 1px 1px 1px #47a947;
-    margin: 20px auto 0;
-  }
-
-  .ToDo-Add:hover {
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
     box-shadow: none;
-    margin-top: 21px;
-    margin-left: calc(auto + 1px);
+    border: 1px solid #adadad;
+    border-right: 0;
+    outline:0;
+  }
+  input:hover, input:focus, input:Active{ outline: 0; }
+  .ToDo-Add { display: table; width: 100%; }
+  .ToDo-Add div { display: table-cell; width: 100%; }
+  .ToDo-Add button {
+    color: white;
+    font-size: 14px;
+    padding: 11px;
+    cursor: pointer;
+    background: #de4843;
+    border-radius: 0px;
+    display: table-cell;
+    width:100px;
+    box-shadow:none;
+    border: 0;
   }
 
   .ToDo-Container {
-    width: 80%;
     margin: 0 auto;
+    padding: 35px 25px 0 25px;
+    border: 1px solid #b7b4b4;
+    background: #f6f6f6;
+    border-top:0; 
   }
+  .ToDo-Content{ margin-top: 35px; margin-bottom:35px; }
 
-  input {
-    width: 60%;
-    padding: 10px;
-    font-size: 1em;
-    margin: 10px auto;
-    box-shadow: 1px 3px 20px 0px rgba(0, 0, 0, 0.3)
-  }
+  
 </style>

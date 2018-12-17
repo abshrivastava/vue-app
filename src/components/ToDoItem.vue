@@ -2,7 +2,7 @@
     <div class="ToDoItem">
         <p class="ToDoItem-Text">{{todo.text}}</p>
         <div class="ToDoItem-Delete"
-             @click="deleteItem(todo)">-
+             @click="deleteItem(todo)"> x
         </div>
     </div>
 </template>
@@ -18,40 +18,28 @@
         }
     }
 </script>
-
 <style>
     .ToDoItem {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .ToDoItem-Text {
-        width: 90%;
         background-color: white;
         border: 1px solid lightgrey;
-        box-shadow: 1px 1px 1px lightgrey;
+        position:relative;
+        margin-top: 8px;
+    }
+
+    .ToDoItem-Text { 
         padding: 12px;
-        margin-right: 10px;
+        margin-right: 40px;
     }
 
     .ToDoItem-Delete {
-        width: 20px;
-        padding: 5px;
-        /* height: 20px; */
-        cursor: pointer;
-        background: #ff7373;
-        border-radius: 10px;
-        box-shadow: 1px 1px 1px #c70202;
-        color: white;
+        position: absolute;
+        right: 14px;
+        top: 9px;
+        bottom: 0;
+        margin: auto;
         font-size: 18px;
-        margin-right: 5px;
-    }
-
-    .ToDoItem-Delete:hover {
-        box-shadow: none;
-        margin-top: 1px;
-        margin-left: 1px;
+        color: #de4843;
+        font-weight: 700;
     }
 
 </style>

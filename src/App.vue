@@ -103,24 +103,31 @@ import axios from "axios";
 export default {
   data() {
     return {
-      id: "",
-      title: ""
+      jsonLink: './src/users.json'
     };
   },
   mounted() {
-    axios({
-      method: "GET",
-      url: "https://jsonplaceholder.typicode.com/posts"
-    }).then(
-      result => {
-        //  posts = result.data
-        console.log("result:", result.data[11]);
-        document.getElementById("output").innerHTML = result.data[11].body;
-      },
-      error => {
-        console.error(error);
-      }
-    );
+fetch(this.$data.jsonLink)
+        .then(function(res) {
+          
+          res = res.json()
+          console.log("response>>>", res)
+          return res.json();
+        }).then((resData) => {
+          console.log("data>>>", resData)
+        })
+    // axios({
+    //   method: "GET",
+    //   url: "https://jsonplaceholder.typicode.com/posts"
+    // }).then(
+    //   result => {
+    //     console.log("result:", result.data[0]);
+    //     document.getElementById("output").innerHTML = result.data[0].body;
+    //   },
+    //   error => {
+    //     console.error(error);
+    //   }
+    // );
   }
   // methods: {
   //   sendData() {

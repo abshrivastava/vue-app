@@ -26,7 +26,7 @@
         margin-top: 8px;
     }
 
-    .ToDoItem-Text {
+    .ToDoItem-Text { 
         padding: 12px;
         margin-right: 40px;
     }

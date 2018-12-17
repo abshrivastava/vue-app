@@ -72,7 +72,7 @@ export default {
 <style>
 
   body {
-    margin: 0;
+    margin: 0; 
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
     height: auto;

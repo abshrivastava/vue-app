@@ -3,7 +3,7 @@
     <div class="ToDo">
       <div class="inner">
         <div>
-          <h1 class="ToDo-Header">Vue ToDo List Demo</h1>
+          <h1 class="ToDo-Header">Demo</h1>
           <div class="ToDo-Container">
             <div class="ToDo-Add">
               <div><input type="text" v-model="todo" v-on:keyup.enter="createNewToDoItem"/></div>
@@ -42,14 +42,6 @@ export default {
               {
                 id: 2,
                 text: 'Add detail 2'
-              },
-              {
-                id: 3,
-                text: 'Add detail 3'
-              },
-              {
-                id: 4,
-                text: 'Add detail 4'
               }
           ],
           todo: '',

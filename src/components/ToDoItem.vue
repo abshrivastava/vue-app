@@ -35,14 +35,11 @@
         position: absolute;
         right: 14px;
         top: 9px;
-        width: 30px;
         bottom: 0;
         margin: auto;
         font-size: 18px;
         color: #de4843;
         font-weight: 700;
-        cursor: pointer;
-        text-align: center;
     }
 
 </style>

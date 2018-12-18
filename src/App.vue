@@ -24,32 +24,35 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import ToDoItem from './components/ToDoItem.vue'
 import Logo from './assets/logo.png';
+import axios from 'axios';
 
 export default {
   name: 'to-do',
   components: {
     ToDoItem
   },
+  created () {
+      this.getPosts()
+  },
   data() {
       return {
-          list: [
-              {
-                id: 1,
-                text: 'Add detail 1'
-              },
-              {
-                id: 2,
-                text: 'Add detail 2'
-              }
-          ],
+          list: [],
           todo: '',
           logo: Logo
       }
   },
-
   methods: {
+      getPosts () {
+         axios({
+            method: 'GET',
+            url: 'http://localhost:4000/list'
+          }).then((res)=>{
+            this.list = res.data
+          })
+      },
       createNewToDoItem() {
         //validate todo
         if (!this.todo){
@@ -57,12 +60,32 @@ export default {
           return
         }
 
+        var self=this;
         const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;
-        this.list.push({ id: newId, text: this.todo});
+        axios.post('http://localhost:4000/list', { id: newId, text: this.todo})
+        .then(function (response) {
+          self.getPosts();
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        
+        
         this.todo = '';
       },
       onDeleteItem(todo){
-        this.list = this.list.filter(item => item !== todo);
+       
+        var self=this;
+        axios({
+          method: 'DELETE',
+          url: 'http://localhost:4000/list/'+todo.id,
+          headers: { 'Content-Type': 'application/json' },
+        }).then((res)=>{
+            self.getPosts();
+        });
+
+        // this.list = this.list.filter(item => item !== todo);
       }
 
   },

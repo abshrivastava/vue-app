@@ -40,6 +40,7 @@
         font-size: 18px;
         color: #de4843;
         font-weight: 700;
+        cursor: pointer;
     }
 
 </style>

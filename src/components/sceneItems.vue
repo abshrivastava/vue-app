@@ -1,17 +1,21 @@
 <template>
     <div class="sceneItems mx-1">
         <!-- <p class="sceneItems-Text">{{vueContainer.text}}</p> -->
-        <p class="sceneItems-Text"><img src={vueContainer.logo} /></p>
+        <div class="sceneItems-Text"><img class="maxh-60" :src="vueContainer.imgUrl" /></div>
         <div class="sceneItems-Delete"
              @click="deleteItem(vueContainer)"> x
         </div>
     </div>
+
+
+    
 </template>
 
 <script>
+// import thumbnail from './assets/thumbnail.png';
      export default {
         name: "vueContainer-item",
-        props: ['vueContainer'],
+        props: ['vueContainer', 'logo'],
         methods: {
             deleteItem(vueContainer) {
                 this.$emit('delete', vueContainer)
@@ -20,6 +24,11 @@
     }
 </script>
 <style>
+.maxh-60 {
+    max-height: 60px;
+}
+
+
     .sceneItems {
         background-color: white;
         border: 1px solid lightgrey;

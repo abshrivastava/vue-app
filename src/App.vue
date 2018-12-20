@@ -9,13 +9,19 @@
               <div class="row">
                 <div class="col-sm-8">
                   <div class="row">
-                    <div class="col-sm-8">
+                    <div class="col-sm-7">
+                      <div class="overFlow">
+                        <div>
+
                       <sceneItems v-for="vueContainer in list" 
                       :vueContainer="vueContainer" 
                       @delete="onDeleteItem"
                       :key="vueContainer.id" />
+                        </div>
+                      </div>
+
                     </div>
-                    <div class="col-sm-4"><img src={this.logo} /></div>
+                    <div class="col-sm-5"><img class="h-75" :src="logo" /></div>
                   </div>
                 </div>
                 <div class="col-sm-4">
@@ -44,7 +50,7 @@
 import Vue from 'vue'
 import storyList from './components/storyList.vue'
 import sceneItems from './components/sceneItems.vue'
-import Logo from './assets/logo.png';
+import Logo from './assets/thumbnail.png';
 import axios from 'axios';
 
 export default {
@@ -67,7 +73,7 @@ export default {
       getPosts () {
          axios({
             method: 'GET',
-            url: 'http://localhost:3000/list/'
+            url: 'http://127.0.0.1:3000/list/'
           }).then((res)=>{
             console.log("resGET1>>>", res)
             this.list = res.data
@@ -84,7 +90,7 @@ export default {
         var self=this;
         const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;
         console.log("newId>>>", newId)
-        axios.post('http://localhost:3000/list/', { id: newId, text: this.vueContainer})
+        axios.post('http://127.0.0.1:3000/list/', { id: newId, text: this.vueContainer, imgUrl: `${this.logo}`})
         .then((response) => {
           self.getPosts();
           console.log(response);
@@ -101,7 +107,7 @@ export default {
         var self=this;
         axios({
           method: 'DELETE',
-          url: 'http://localhost:3000/list/'+vueContainer.id,
+          url: 'http://127.0.0.1:3000/list/'+vueContainer.id,
           headers: { 'Content-Type': 'application/json' },
         }).then((res)=>{
             self.getPosts();
@@ -116,7 +122,7 @@ export default {
 
 <style>
 
-  body {
+body {
     margin: 0; 
     padding: 0;
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -186,7 +192,13 @@ export default {
     border-top:0; 
     margin-top: 40px;
   }
-  /* .vueContainer-Content{ margin-top: 35px; margin-bottom:35px; } */
 
+.overFlow {
+  overflow: auto;
+}
+
+.overFlow > div{
+  min-width: 1200px;
+}
   
 </style>

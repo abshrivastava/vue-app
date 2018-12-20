@@ -1,37 +1,38 @@
 <template>
-    <div class="ToDoItem">
-        <p class="ToDoItem-Text">{{todo.text}}</p>
-        <div class="ToDoItem-Delete"
-             @click="deleteItem(todo)"> x
+    <div class="storyList">
+        <p class="storyList-Text">{{vueContainer.text}}</p>
+        <div class="storyList-Delete"
+             @click="deleteItem(vueContainer)"> x
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        name: "to-do-item",
-        props: ['todo'],
+     export default {
+        name: "vueContainer-item",
+        props: ['vueContainer'],
         methods: {
-            deleteItem(todo) {
-                this.$emit('delete', todo)
+            deleteItem(vueContainer) {
+                this.$emit('delete', vueContainer)
             }
         }
     }
 </script>
+
 <style>
-    .ToDoItem {
+    .storyList {
         background-color: white;
         border: 1px solid lightgrey;
         position:relative;
         margin-top: 8px;
     }
 
-    .ToDoItem-Text { 
+    .storyList-Text { 
         padding: 12px;
         margin-right: 40px;
     }
 
-    .ToDoItem-Delete {
+    .storyList-Delete {
         position: absolute;
         right: 14px;
         top: 9px;

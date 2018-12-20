@@ -1,20 +1,37 @@
 <template>
   <div id="app">
-    <div class="ToDo">
+    <div class="vueContainer vueContainer-Container">
       <div class="inner">
         <div>
-          <h1 class="ToDo-Header">Demo</h1>
-          <div class="ToDo-Container">
-            <div class="ToDo-Add">
-              <div><input type="text" v-model="todo" v-on:keyup.enter="createNewToDoItem"/></div>
-              <button @click="createNewToDoItem()">Add</button>
-            </div>
-            <div class="ToDo-Content">
-              <ToDoItem v-for="todo in list" 
-                        :todo="todo" 
-                        @delete="onDeleteItem"
-                        :key="todo.id" />
-            </div>
+          <h1 class="header">TVU Network Demo</h1>
+
+            <div class="my-4 container">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <sceneItems v-for="vueContainer in list" 
+                      :vueContainer="vueContainer" 
+                      @delete="onDeleteItem"
+                      :key="vueContainer.id" />
+                    </div>
+                    <div class="col-sm-4"><img src={this.logo} /></div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <storyList v-for="vueContainer in list" 
+                  :vueContainer="vueContainer" 
+                  @delete="onDeleteItem"
+                  :key="vueContainer.id" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="thumbnailAdd col-12">
+                  <div><input type="text" v-model="vueContainer" v-on:keyup.enter="createNewstoryList"/></div>
+                  <button @click="createNewstoryList()">Add</button>
+                </div>
+              </div>
             
           </div>
         </div>
@@ -25,14 +42,16 @@
 
 <script>
 import Vue from 'vue'
-import ToDoItem from './components/ToDoItem.vue'
+import storyList from './components/storyList.vue'
+import sceneItems from './components/sceneItems.vue'
 import Logo from './assets/logo.png';
 import axios from 'axios';
 
 export default {
-  name: 'to-do',
+  name: 'vueContainer',
   components: {
-    ToDoItem
+    storyList,
+    sceneItems
   },
   created () {
       this.getPosts()
@@ -40,7 +59,7 @@ export default {
   data() {
       return {
           list: [],
-          todo: '',
+          vueContainer: '',
           logo: Logo
       }
   },
@@ -48,44 +67,47 @@ export default {
       getPosts () {
          axios({
             method: 'GET',
-            url: 'http://localhost:4000/list'
+            url: 'http://localhost:3000/list/'
           }).then((res)=>{
+            console.log("resGET1>>>", res)
             this.list = res.data
+            console.log("resGET2>>>", this.list)
           })
       },
-      createNewToDoItem() {
-        //validate todo
-        if (!this.todo){
-          alert("Please enter a todo!");
+      createNewstoryList() {
+        //validate vueContainer
+        if (!this.vueContainer){
+          alert("Please enter a vueContainer!");
           return
         }
 
         var self=this;
         const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;
-        axios.post('http://localhost:4000/list', { id: newId, text: this.todo})
-        .then(function (response) {
+        console.log("newId>>>", newId)
+        axios.post('http://localhost:3000/list/', { id: newId, text: this.vueContainer})
+        .then((response) => {
           self.getPosts();
           console.log(response);
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
         });
         
         
-        this.todo = '';
+        this.vueContainer = '';
       },
-      onDeleteItem(todo){
+      onDeleteItem(vueContainer){
        
         var self=this;
         axios({
           method: 'DELETE',
-          url: 'http://localhost:4000/list/'+todo.id,
+          url: 'http://localhost:3000/list/'+vueContainer.id,
           headers: { 'Content-Type': 'application/json' },
         }).then((res)=>{
             self.getPosts();
         });
 
-        // this.list = this.list.filter(item => item !== todo);
+        // this.list = this.list.filter(item => item !== vueContainer);
       }
 
   },
@@ -111,17 +133,18 @@ export default {
     top: 50px;
   }
 
-  .ToDo {
+  .vueContainer {
     border: 1px solid white;
     width: 100%;
-    max-width: 700px;
-    height: 100vh;
+    max-width: 1000px;
+    height: auto;
     display:table;
     margin:0 auto;
+    margin-top: 50px;
   }
-  .ToDo .inner{ display: table-cell; width: 100%; height: 100%; vertical-align: middle;}
+  .vueContainer .inner{ display: table-cell; width: 100%; height: 100%; vertical-align: middle;}
 
-  .ToDo-Header {
+  .header {
     color: black;
     font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
     font-weight: 400;
@@ -129,7 +152,6 @@ export default {
     color: #fff;
     font-size:22px;
     padding: 12px 10px;
-    text-align: center;
   }
   input {
     width: 100%;
@@ -141,9 +163,9 @@ export default {
     outline:0;
   }
   input:hover, input:focus, input:Active{ outline: 0; }
-  .ToDo-Add { display: table; width: 100%; }
-  .ToDo-Add div { display: table-cell; width: 100%; }
-  .ToDo-Add button {
+  .thumbnailAdd { display: table; width: 100%; }
+  .thumbnailAdd div { display: table-cell; width: 100%; }
+  .thumbnailAdd button {
     color: white;
     font-size: 14px;
     padding: 11px;
@@ -156,14 +178,15 @@ export default {
     border: 0;
   }
 
-  .ToDo-Container {
+  .vueContainer-Container {
     margin: 0 auto;
-    padding: 35px 25px 0 25px;
+    /* padding: 35px 25px 0 25px; */
     border: 1px solid #b7b4b4;
     background: #f6f6f6;
     border-top:0; 
+    margin-top: 40px;
   }
-  .ToDo-Content{ margin-top: 35px; margin-bottom:35px; }
+  /* .vueContainer-Content{ margin-top: 35px; margin-bottom:35px; } */
 
   
 </style>

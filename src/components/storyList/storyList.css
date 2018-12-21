@@ -1,0 +1,30 @@
+.storyList {
+    background-color: var(--white);
+    border: 1px solid var(--borderGrey);
+    position:relative;
+    margin-top: 8px;
+}
+
+.storyList-Text { 
+    padding: 12px;
+    margin-right: 40px;
+}
+
+.storyList-Delete {
+    position: absolute;
+    right: 14px;
+    top: 9px;
+    bottom: 0;
+    margin: auto;
+    font-size: 18px;
+    color: var(--lightRed);
+    font-weight: 700;
+    cursor: pointer;
+}
+.overFlow {
+  overflow: auto;
+}
+
+.overFlow>div {
+  min-width: 120000px;
+}

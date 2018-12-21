@@ -1,15 +1,13 @@
-<template>
+<!-- Stylesheet -->
+<style src="./storyList.css"></style>
 
-
-
-    
-</template>
+<!-- HTML Layout -->
+<template lang="html" src="./storyList.html"></template>
 
 <script>
-// import thumbnail from './assets/thumbnail.png';
      export default {
         name: "vueContainer-item",
-        props: ['vueContainer', 'logo'],
+        props: ['vueContainer'],
         methods: {
             deleteItem(vueContainer) {
                 this.$emit('delete', vueContainer)
@@ -17,7 +15,3 @@
         }
     }
 </script>
-<style>
-
-
-</style>

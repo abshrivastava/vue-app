@@ -1,0 +1,56 @@
+<div id="app">
+  <div class="vueContainer vueContainer-Container">
+    <div class="inner">
+      <div>
+        <h1 class="header">Demo</h1>
+
+        <div class="my-4 container">
+          <div class="row">
+            <div class="col-sm-9">
+              <div class="row">
+
+                <!-- Scene details -->
+                <div class="col-sm-7">
+                  <div class="overFlow">
+                    <div>
+                      <sceneItems v-for="vueContainer in list" :vueContainer="vueContainer" @delete="onDeleteItem" :key="vueContainer.id" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-5"><img class="h-75" :src="logo" /></div>
+              </div>
+
+              <!-- Range Slider-->
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="range-slider" id="range-slider-1">
+                    <span></span>
+                  </div>
+
+                  <div class="range-slider" id="range-slider-2">
+                    <span></span>
+                  </div>
+
+                  <div class="test-result" id="test-result">0%</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Story details -->
+            <div class="col-sm-3">
+              <storyList v-for="vueContainer in list" :vueContainer="vueContainer" @delete="onDeleteItem" :key="vueContainer.id" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="thumbnailAdd col-12">
+              <div><input type="text" v-model="vueContainer" v-on:keyup.enter="createNewstoryList" /></div>
+              <button @click="createNewstoryList()">Add</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

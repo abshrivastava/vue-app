@@ -1,9 +1,8 @@
-<template>
+<!-- Stylesheet -->
+<style src="./sceneItems.css"></style>
 
-
-
-    
-</template>
+<!-- HTML Layout -->
+<template lang="html" src="./sceneItems.html"></template>
 
 <script>
 // import thumbnail from './assets/thumbnail.png';
@@ -17,7 +16,3 @@
         }
     }
 </script>
-<style>
-
-
-</style>

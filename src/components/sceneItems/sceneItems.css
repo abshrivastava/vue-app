@@ -1,0 +1,29 @@
+.maxh-60 {
+    max-height: 60px;
+}
+
+
+    .sceneItems {
+        background-color: white;
+        border: 1px solid lightgrey;
+        position:relative;
+        margin-top: 8px;
+        float: left;
+    }
+
+    .sceneItems-Text { 
+        padding: 10px;
+        /* margin-right: 40px; */
+    }
+
+    .sceneItems-Delete {
+        position: absolute;
+        right: 14px;
+        top: 9px;
+        bottom: 0;
+        margin: auto;
+        font-size: 18px;
+        color: #de4843;
+        font-weight: 700;
+        cursor: pointer;
+    }

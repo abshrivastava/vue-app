@@ -100,3 +100,11 @@ input:Active {
   border-top: 0;
   margin-top: 40px;
 }
+
+.selector {
+  border: 1px solid rgb(247, 81, 81);
+  height: 60px;
+  width: 250px;
+  background: var(--lightRed);
+  opacity: 0.4;
+}

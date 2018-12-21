@@ -4,6 +4,11 @@
       "id": 0,
       "text": "add detail3",
       "imgUrl": "thumbnail"
+    },
+    {
+      "id": 1,
+      "text": "cvc",
+      "imgUrl": "/static/img/thumbnail.13490af.png"
     }
   ]
 }

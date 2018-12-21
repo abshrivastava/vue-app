@@ -12,12 +12,14 @@ import storyList from './components/storyList/storyList.vue'
 import sceneItems from './components/sceneItems/sceneItems.vue'
 import Logo from './assets/thumbnail.png';
 import axios from 'axios';
+import VueSlideBar from 'vue-slide-bar'
 
 export default {
   name: 'vueContainer',
   components: {
     storyList,
-    sceneItems
+    sceneItems,
+    VueSlideBar
   },
   created () {
       this.getPosts()
@@ -26,10 +28,52 @@ export default {
       return {
           list: [],
           vueContainer: '',
-          logo: Logo
+          logo: Logo,
+                rangeValue: {},
+      slider: {
+        value: 45,
+        data: [
+          15,
+          30,
+          45,
+          60,
+          75,
+          90,
+          120
+        ],
+        range: [
+          {
+            label: '15 mins'
+          },
+          {
+            label: '30 mins',
+            isHide: true
+          },
+          {
+            label: '45 mins'
+          },
+          {
+            label: '1 hr',
+            isHide: true
+          },
+          {
+            label: '1 hr 15 mins'
+          },
+          {
+            label: '1 hr 30 mins',
+            isHide: true
+          },
+          {
+            label: '2 hrs'
+          }
+        ]
+      }
       }
   },
   methods: {
+    callbackRange (val) {
+      this.rangeValue = val
+    },
       getPosts () {
          axios({
             method: 'GET',

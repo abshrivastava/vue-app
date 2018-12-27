@@ -1,13 +1,23 @@
 {
   "list": [
     {
-      "id": 0,
-      "text": "add detail3",
-      "imgUrl": "thumbnail"
+      "id": 1,
+      "text": "asda",
+      "imgUrl": "/static/img/thumbnail.13490af.png"
     },
     {
-      "id": 1,
-      "text": "cvc",
+      "id": 2,
+      "text": "asdsa",
+      "imgUrl": "/static/img/thumbnail.13490af.png"
+    },
+    {
+      "id": 3,
+      "text": "sadasd",
+      "imgUrl": "/static/img/thumbnail.13490af.png"
+    },
+    {
+      "id": 4,
+      "text": "gdfg",
       "imgUrl": "/static/img/thumbnail.13490af.png"
     }
   ]

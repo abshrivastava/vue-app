@@ -3,7 +3,9 @@
   --lightGray: #b7b4b4;
   --milkyWhite: #f6f6f6;
   --borderGrey: #d3d3d3;
+  --borderRed: #ff0000;
   --ContainerMaxWidth: 1000px;
+  --imgUrl: url('{{vueContainer.imgUrl}}')
 
 }
 
@@ -18,7 +20,7 @@ body {
 }
 
 h1,
-p {
+p, ul {
   margin: 0;
   padding: 0;
 }
@@ -102,9 +104,43 @@ input:Active {
 }
 
 .selector {
-  border: 1px solid rgb(247, 81, 81);
+  /* border: 1px solid rgb(247, 81, 81);
   height: 60px;
   width: 250px;
   background: var(--lightRed);
-  opacity: 0.4;
+  opacity: 0.4; */
+  border: 5px solid rgb(222, 72, 67);
+  height: 60px;
+  width: 250px;
+  top: 88px;
+  position: absolute;
+}
+
+.display-img {
+  width: 100%;
+  border: 1px solid var(--borderRed);
+  background: var (--imgUrl);
+}
+
+.display-hz {
+  max-height: 675px;
+  overflow-y: auto;
+}
+
+.shadow-box {
+  box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.5);
+}
+
+.img-thumbnail {
+  padding: 8px;
+}
+
+.img-list > ul li {
+  list-style-type: none;
+  float: left;
+}
+
+.img-list > ul > li > img {
+  width: 70px;
+  height: 60px;
 }

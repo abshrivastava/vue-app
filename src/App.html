@@ -2,27 +2,28 @@
   <div class="vueContainer vueContainer-Container">
     <div class="inner">
       <div>
-        <h1 class="header">Demo</h1>
+        <h1 class="header">TVU Networks Demo</h1>
 
         <div class="my-4 container">
-          <div class="row">
+          <div class="row p-4">
             <div class="col-sm-9">
               <div class="row">
 
                 <!-- Scene details -->
                 <div class="col-sm-7">
-                  <div class="overFlow">
-                    <div>
+                  <div class="overFlow shadow-box py-3">
+                    <div class="px-2">
                       <sceneItems v-for="vueContainer in list" :vueContainer="vueContainer" @delete="onDeleteItem" :key="vueContainer.id" />
                     </div>
                   </div>
                 </div>
-                <div class="col-sm-5"><img class="h-75" :src="logo" /></div>
+                <div class="col-sm-5"><img class="shadow-box display-img" :src="imgUrl" /></div>
               </div>
 
               <!-- Range Slider-->
-              <div class="row">
-                <div class="col-sm-12">
+              <div class="row mt-4">
+                  <div class="col-sm-3 pt-5"><img class="shadow-box display-img" :src="imgUrl_1" /></div>
+                <div class="col-sm-9">
 
 
                     <div>
@@ -35,12 +36,25 @@
                           @callbackRange="callbackRange">
                           <template slot="tooltip" slot-scope="tooltip">
                             <div class="selector"></div>
-                            <!-- <img src="static/images/thumbnail.png"> -->
-                          </template>
+                        </template>
                         </VueSlideBar>
+                        <div class="img-list">
+                            <ul>
+                              <li><img :src="imgUrl" /></li>
+                              <li><img :src="imgUrl" /></li>
+                              <li><img :src="imgUrl" /></li>
+                              <li><img :src="imgUrl" /></li>
+                              <li><img :src="imgUrl" /></li>
+                              <li><img :src="imgUrl" /></li>
+                              <li><img :src="imgUrl" /></li>
+                              <li><img :src="imgUrl" /></li>
+                            </ul>
+                          </div>
                         <h2>Value: {{slider.value}}</h2>
                         <h2>Label: {{rangeValue.label}}</h2>
-                      </div>
+                      </div> 
+
+
 
 
 
@@ -49,12 +63,12 @@
             </div>
 
             <!-- Story details -->
-            <div class="col-sm-3">
+            <div class="col-sm-3 display-hz shadow-box">
               <storyList v-for="vueContainer in list" :vueContainer="vueContainer" @delete="onDeleteItem" :key="vueContainer.id" />
             </div>
           </div>
 
-          <div class="row">
+          <div class="row my-4">
             <div class="thumbnailAdd col-12">
               <div><input type="text" v-model="vueContainer" v-on:keyup.enter="createNewstoryList" /></div>
               <button @click="createNewstoryList()">Add</button>

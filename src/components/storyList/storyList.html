@@ -1,6 +1,13 @@
 <div class="storyList">
-  <p class="storyList-Text">{{vueContainer.text}}</p>
-  <div class="storyList-Delete"
-       @click="deleteItem(vueContainer)"> x
+  <div class="storyList-inner">
+    <!-- <img class="maxh-100" > -->
+    <img :src="vueContainer.imgUrl" class="img-thumbnail" alt="Cinque Terre">
+    <div class="storyList-Delete" @click="deleteItem(vueContainer)">
+      <div></div>
+        <p class="storyList-Text">Story: {{vueContainer.id}}</p>
+    </div>
+    
+
   </div>
+
 </div>

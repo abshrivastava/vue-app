@@ -2,26 +2,32 @@
   max-height: 60px;
 }
 
+.maxh-60:hover {
+  background: #000;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
 .sceneItems {
   background-color: var(--white);
   border: 1px solid var(--borderGrey);
   position: relative;
-  margin-top: 8px;
+  /* margin-top: 8px; */
   float: left;
 }
 
-.sceneItems-Text {
-  padding: 10px;
+.sceneItems-inner {
+  padding: 5px;
   /* margin-right: 40px; */
 }
 
 .sceneItems-Delete {
   position: absolute;
-  right: 14px;
-  top: 9px;
+  right: 10px;
+  bottom: 0;
   bottom: 0;
   margin: auto;
-  font-size: 18px;
+  font-size: 25px;
   color: var(--lightRed);
   font-weight: 700;
   cursor: pointer;

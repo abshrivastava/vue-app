@@ -10,7 +10,8 @@
 import Vue from 'vue'
 import storyList from './components/storyList/storyList.vue'
 import sceneItems from './components/sceneItems/sceneItems.vue'
-import Logo from './assets/thumbnail.png';
+import imgUrl from './assets/thumbnail.png';
+import imgUrl_1 from './assets/4.png';
 import axios from 'axios';
 import VueSlideBar from 'vue-slide-bar'
 
@@ -28,7 +29,8 @@ export default {
       return {
           list: [],
           vueContainer: '',
-          logo: Logo,
+          imgUrl: imgUrl,
+          imgUrl_1: imgUrl_1,
                 rangeValue: {},
       slider: {
         value: 45,
@@ -94,7 +96,7 @@ export default {
         var self=this;
         const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;
         console.log("newId>>>", newId)
-        axios.post('http://127.0.0.1:3000/list/', { id: newId, text: this.vueContainer, imgUrl: `${this.logo}`})
+        axios.post('http://127.0.0.1:3000/list/', { id: newId, text: this.vueContainer, imgUrl: `${this.imgUrl}`})
         .then((response) => {
           self.getPosts();
           console.log(response);
@@ -105,6 +107,7 @@ export default {
         
         
         this.vueContainer = '';
+        console.log("vueContainer.id>>", vueContainer.id)
       },
       onDeleteItem(vueContainer){
        

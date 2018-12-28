@@ -4,6 +4,7 @@
   --milkyWhite: #f6f6f6;
   --borderGrey: #d3d3d3;
   --borderRed: #ff0000;
+  --black: #000;
   --ContainerMaxWidth: 1000px;
   --imgUrl: url('{{vueContainer.imgUrl}}')
 
@@ -143,4 +144,8 @@ input:Active {
 .img-list > ul > li > img {
   width: 70px;
   height: 60px;
+}
+
+.border6 {
+  border: 6px solid var(--black)
 }

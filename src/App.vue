@@ -29,8 +29,8 @@ export default {
       return {
           list: [],
           vueContainer: '',
-          imgUrl: imgUrl,
-          imgUrl_1: imgUrl_1,
+          imgUrl: "./"+imgUrl,
+          imgUrl_1:"./"+imgUrl_1,
                 rangeValue: {},
       slider: {
         value: 45,
@@ -79,7 +79,7 @@ export default {
       getPosts () {
          axios({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/list/'
+            url: 'http://localhost:3000/list'
           }).then((res)=>{
             console.log("resGET1>>>", res)
             this.list = res.data
@@ -96,7 +96,7 @@ export default {
         var self=this;
         const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;
         console.log("newId>>>", newId)
-        axios.post('http://127.0.0.1:3000/list/', { id: newId, text: this.vueContainer, imgUrl: `${this.imgUrl}`})
+        axios.post('http://localhost:3000/list', { id: newId, text: this.vueContainer, imgUrl: `${this.imgUrl}`})
         .then((response) => {
           self.getPosts();
           console.log(response);
@@ -114,7 +114,7 @@ export default {
         var self=this;
         axios({
           method: 'DELETE',
-          url: 'http://127.0.0.1:3000/list/'+vueContainer.id,
+          url: 'http://localhost:3000/list/'+vueContainer.id,
           headers: { 'Content-Type': 'application/json' },
         }).then((res)=>{
             self.getPosts();

@@ -86,20 +86,29 @@ export default {
             console.log("resGET2>>>", this.list)
           })
       },
+      
       createNewstoryList() {
+
         //validate vueContainer
-        if (!this.vueContainer){
-          alert("Please enter a vueContainer!");
-          return
-        }
+        // if (!this.vueContainer){
+        //   alert("Please enter a vueContainer!");
+        //   return
+        // }
 
         var self=this;
-        const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;
-        console.log("newId>>>", newId)
-        axios.post('http://localhost:3000/list', { id: newId, text: this.vueContainer, imgUrl: `${this.imgUrl}`})
+        // const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;]
+        
+        axios.post('http://18.195.246.181:8288/v3/StudioOperation.ashx',{
+          "OperationType": "10200",
+          "Data": "N/A",
+          // "Access-Control-Allow-Origin": "*"
+          })
+
+        // axios.post('http://localhost:3000/list', { id: newId, text: this.vueContainer, imgUrl: `${this.imgUrl}`})
         .then((response) => {
+          let data= JSON.parse(response.data.ReturnValue)
           self.getPosts();
-          console.log(response);
+          console.log("Response value>>>", data);
         })
         .catch((error) => {
           console.log(error);

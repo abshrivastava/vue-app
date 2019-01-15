@@ -96,12 +96,11 @@ export default {
         // }
 
         var self=this;
-        // const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;]
+        // const newId = Math.max.apply(null, this.list.map(t => t.id)) + 1;
         
         axios.post('http://18.195.246.181:8288/v3/StudioOperation.ashx',{
-          "OperationType": "10200",
+          "OperationType": "10300",
           "Data": "N/A",
-          // "Access-Control-Allow-Origin": "*"
           })
 
         // axios.post('http://localhost:3000/list', { id: newId, text: this.vueContainer, imgUrl: `${this.imgUrl}`})
@@ -109,6 +108,18 @@ export default {
           let data= JSON.parse(response.data.ReturnValue)
           self.getPosts();
           console.log("Response value>>>", data);
+          var startTimestamp = data.Sources[4].Records[0].StartTimestamp
+          var endTimestamp = data.Sources[4].Records[0].EndTimestamp
+
+          if (endTimestamp === "0") {
+            var add_minutes =  function (dt, minutes) {
+                return new Date(dt.getTime() + minutes*60000).getTime();
+            }
+            endTimestamp = add_minutes(new Date(1546589050053), 1).toString();
+          }
+          console.log("startTimestamp>>>>>>>>>>",startTimestamp)
+          console.log("Endtimestamp>>>>>>>>>>",endTimestamp)
+
         })
         .catch((error) => {
           console.log(error);
